@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const marker = L.marker([hospital.Lat, hospital.Lng], {icon: hospitalIcon})
                 .addTo(markerLayerGroup)
                 .bindPopup(`
-                    <b>${hospital.Name}</b><br>
+                    <b>${hospital.Name</b><br>
                     ${hospital.Address}, ${hospital.City}<br>
                     Grade: ${hospital.TIER_1_GRADE_Lown_Composite}
                 `);
