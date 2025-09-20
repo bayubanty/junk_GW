@@ -6,7 +6,8 @@
     <title>Georgia Hospital System Scorecard</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    </head>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <header>
         <div class="container">
@@ -41,38 +42,51 @@
         <aside class="sidebar">
             <h2>Filter Hospitals</h2>
             
-            <div class="sidebar-section">
-                <h3>Filter by Hospital Type</h3>
-                <div class="checkbox-group">
-                    <label class="check">
-                        <input type="checkbox" name="hospitalType" value="" checked>
-                        <span>All Hospital Types</span>
-                    </label>
-                    <label class="check">
-                        <input type="checkbox" name="hospitalType" value="rural">
-                        <span>Rural</span>
-                    </label>
-                    <label class="check">
-                        <input type="checkbox" name="hospitalType" value="urban">
-                        <span>Urban</span>
-                    </label>
-                    <label class="check">
-                        <input type="checkbox" name="hospitalType" value="nonprofit">
-                        <span>Nonprofit</span>
-                    </label>
-                    <label class="check">
-                        <input type="checkbox" name="hospitalType" value="forprofit">
-                        <span>For Profit</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>Filter by City</h3>
-                <select class="sidebar-select" id="sidebarCity">
-                    <option value="">All Cities</option>
-                    <!-- Cities will be populated dynamically -->
+            <!-- Location Search Section -->
+            <div class="location-search">
+                <h3>Search by Location</h3>
+                <input type="text" class="search-input" id="zipCodeInput" placeholder="Enter ZIP code">
+                <select class="radius-select" id="radiusSelect">
+                    <option value="">Select radius</option>
+                    <option value="5">5 miles</option>
+                    <option value="10">10 miles</option>
+                    <option value="25">25 miles</option>
+                    <option value="50">50 miles</option>
+                    <option value="100">100 miles</option>
                 </select>
+                <button class="sidebar-button" id="locationSearchBtn">Search Location</button>
+            </div>
+            
+            <!-- Hospital Type Dropdown -->
+            <div class="metric-dropdown">
+                <div class="dropdown-header" data-metric="hospitalType">
+                    <span>Filter by Hospital Type</span>
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="dropdown-content">
+                    <div class="checkbox-group">
+                        <label class="check">
+                            <input type="checkbox" name="hospitalType" value="" checked>
+                            <span>All Hospital Types</span>
+                        </label>
+                        <label class="check">
+                            <input type="checkbox" name="hospitalType" value="rural">
+                            <span>Rural</span>
+                        </label>
+                        <label class="check">
+                            <input type="checkbox" name="hospitalType" value="urban">
+                            <span>Urban</span>
+                        </label>
+                        <label class="check">
+                            <input type="checkbox" name="hospitalType" value="nonprofit">
+                            <span>Nonprofit</span>
+                        </label>
+                        <label class="check">
+                            <input type="checkbox" name="hospitalType" value="forprofit">
+                            <span>For Profit</span>
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <button class="sidebar-button" id="sidebarSearchBtn">Apply Filters</button>
@@ -191,6 +205,10 @@
                         <div>
                             <span id="resultsCount">Viewing 0 results</span>
                         </div>
+                        <div class="loading" id="resultsLoading">
+                            <div class="loading-spinner"></div>
+                            <p>Loading results...</p>
+                        </div>
                     </div>
                     
                     <table class="results-table">
@@ -235,4 +253,9 @@
         </div>
     </footer>
 
+    <div class="toast" id="toast"></div>
+
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
